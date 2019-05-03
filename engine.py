@@ -161,7 +161,8 @@ class SnowboyEngine(Engine):
         model_str = os.path.join(os.path.dirname(__file__), model_relative_path).encode()
         resource_filename = os.path.join(os.path.dirname(__file__), 'engines/snowboy/resources/common.res').encode()
         self._snowboy = snowboydetect.SnowboyDetect(resource_filename=resource_filename, model_str=model_str)
-        self._snowboy.SetSensitivity(str(sensitivity).encode())
+        self._snowboy.ApplyFrontend(True)
+	self._snowboy.SetSensitivity(str(sensitivity).encode())
 
     def process(self, pcm):
         assert pcm.dtype == np.int16
